@@ -5,11 +5,12 @@
 #define NUM     256
 #define SIGN    257
 #define ERR     666
+#define VAR     555
 
 using namespace std;
 
 struct token {
-    int type;
+    int type ;
     int value;
 };
 
@@ -22,8 +23,11 @@ string token_name(int t){
     {
         case NUM: return "NUM";
         case SIGN: return "SIGN";
+        case ERR:return "ERR";
+        case VAR:return "VAR";
+        
     }
-    return "YOUR MOM";
+    return "NOPE";
 }
 
 char get_char(){
@@ -71,15 +75,3 @@ token next_token(){
     }
     return t;
 }
-
-// int main() {
-//     input = "123+321-12+2";
-//     token lookahead = next_token();
-//     while (lookahead.type!=EOF){
-//         cout << "<"<< token_name(lookahead.type);
-//         if (lookahead.type == NUM)
-//             cout << "," << lookahead.value;
-//         cout <<">"<< endl;
-//         lookahead = next_token();
-//     }
-// }
