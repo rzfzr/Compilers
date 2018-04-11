@@ -38,6 +38,8 @@ char get_char(){
     }
 }
 
+
+
 token next_token(){
     
     token t;
@@ -65,10 +67,17 @@ token next_token(){
         t.type = NUM;
         t.value = v;
         c = peek;
-    } else if (peek == '+' || peek == '-'){
+    } else if (peek=='='||peek == '+' || peek == '-'){
         t.type = SIGN;
         t.value=peek;
-    } else if (peek == EOF) {
+    }else if(isalpha(peek)){
+        t.type=VAR;
+        t.value=peek;
+        
+    } 
+    
+    
+    else if (peek == EOF) {
         t.type = EOF;
     } else {
         t.type = ERR;
