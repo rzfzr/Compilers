@@ -14,10 +14,9 @@ void print(char);
 
 token lookahead;
 
-// void print_char(char c){
-//     cout <<c;
-//     // printf("%c ", c);
-// }
+void print_char(char c){
+    printf("%c ", c);
+}
 
 void print_int(int i){
     printf("%d ", i);
@@ -30,21 +29,12 @@ void list(){
 
 void x(){
     if (lookahead.type == SIGN) {
-        match(SIGN); term();
-        cout<<(char)lookahead.value;
-        // print_char(lookahead.value);
-        x();
-    }  
-    
-    // else if (lookahead.type == MINUS){
-    //     match(MINUS); term(); print_char('-'); x();
-    //     }
-        
-    // if(lookahead.type   ==SIGN){
-    //     match(PLUS); term(); print_char((char)lookahead.value+48);x();
-    // } 
-    
-    else if (lookahead.type == EOF){
+        if(lookahead.value ==(int)('+')){
+        match(SIGN); term(); print_char('+'); x();
+        } else {
+         match(SIGN); term(); print_char('-'); x();
+        }
+    } else if (lookahead.type == EOF){
         printf("\nSuccess.\n");
     } else {
         printf("Syntax error on x\n");
@@ -66,7 +56,6 @@ void term(){
 }
 
 void match(int type){
-    // cout<<"matching "<<type<<endl;
     if (lookahead.type == type){
         lookahead = next_token();
     } else {
@@ -84,7 +73,7 @@ int main(){
     // char c = (char)i+48;
     // cout <<c<<endl;
     
-    input="111-222-333";
+    input="111+222-333";
     // input = "123+321-111";
     lookahead = next_token();
     list();

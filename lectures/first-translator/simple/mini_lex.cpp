@@ -3,9 +3,7 @@
 #include "iostream"
 #include "cstdlib"
 #define NUM     256
-#define SIGN    1111
-// #define PLUS    257
-// #define MINUS   258
+#define SIGN    257
 #define ERR     666
 
 using namespace std;
@@ -24,10 +22,8 @@ string token_name(int t){
     {
         case NUM: return "NUM";
         case SIGN: return "SIGN";
-        // case PLUS: return "PLUS";
-        // case MINUS: return "MINUS";
     }
-    return "HEISENBERG";
+    return "YOUR MOM";
 }
 
 char get_char(){
@@ -58,10 +54,12 @@ token next_token(){
         t.type = NUM;
         t.value = v;
         c = peek;
-    } else if (peek == '+' ||peek=='-'){
+    } else if (peek == '+' || peek == '-'){
         t.type = SIGN;
         t.value=peek;
-        // cout<<"found a sign: "<< ((char)t.value)<<endl;
+    // } 
+    // else if (peek == '-'){
+    //     t.type = MINUS;
     } else if (peek == EOF) {
         t.type = EOF;
     } else {
@@ -69,3 +67,15 @@ token next_token(){
     }
     return t;
 }
+
+// int main() {
+//     input = "123+321-12+2";
+//     token lookahead = next_token();
+//     while (lookahead.type!=EOF){
+//         cout << "<"<< token_name(lookahead.type);
+//         if (lookahead.type == NUM)
+//             cout << "," << lookahead.value;
+//         cout <<">"<< endl;
+//         lookahead = next_token();
+//     }
+// }
