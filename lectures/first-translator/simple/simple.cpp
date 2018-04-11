@@ -29,11 +29,8 @@ void list(){
 
 void x(){
     if (lookahead.type == SIGN) {
-        if(lookahead.value ==(int)('+')){
-        match(SIGN); term(); print_char('+'); x();
-        } else {
-         match(SIGN); term(); print_char('-'); x();
-        }
+        int value = lookahead.value;
+        match(SIGN); term(); print_char((char)value); x();
     } else if (lookahead.type == EOF){
         printf("\nSuccess.\n");
     } else {
@@ -64,17 +61,7 @@ void match(int type){
 }
 
 int main(){
-    // char cc = '+';
-    
-    // int i = 43;
-    // cout <<(char)i;
-    // printf("%d", i);
-    // cout <<endl<<i<<endl;
-    // char c = (char)i+48;
-    // cout <<c<<endl;
-    
-    input="111+222-333";
-    // input = "123+321-111";
+    input = "123+321 -  111";
     lookahead = next_token();
     list();
 }

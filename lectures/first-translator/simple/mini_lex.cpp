@@ -35,16 +35,23 @@ char get_char(){
 }
 
 token next_token(){
+    
     token t;
     char peek;
     if (c == EOF){
         peek = get_char();
-    }
-    else {
+    }else {
         peek = c;
         c = EOF;
     }
-    //tratar espaços
+    
+    while(peek ==' ' ){
+        // cout<<"found space"<<endl;
+        peek = get_char();
+    }
+    
+    
+    
     if (isdigit(peek)){ //tratar inteiros e reais
         int v = 0;
         do {
@@ -57,9 +64,6 @@ token next_token(){
     } else if (peek == '+' || peek == '-'){
         t.type = SIGN;
         t.value=peek;
-    // } 
-    // else if (peek == '-'){
-    //     t.type = MINUS;
     } else if (peek == EOF) {
         t.type = EOF;
     } else {
