@@ -40,9 +40,6 @@ void x(){
 }
 
 void term(){
-    // if (isalpha(lookahead)){ //var
-    //     match(lookahead);
-    // } else
     if (lookahead.type == NUM) {
         print_int(lookahead.value);
         match(NUM);
