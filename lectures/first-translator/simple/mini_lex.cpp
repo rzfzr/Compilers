@@ -2,12 +2,19 @@
 #include "string"
 #include "iostream"
 #include "cstdlib"
+#include <sstream>
+
 #define NUM     256
 #define SIGN    257
 #define ERR     666
+#define EMPTY   999
 #define VAR     555
 
 using namespace std;
+
+
+bool isDebugging;
+
 
 struct token {
     int type ;
@@ -18,16 +25,26 @@ string input;
 int pos = 0;
 char c = EOF;
 
+
+string debug(string message){
+    if(isDebugging){
+         cout<<message<<endl;
+    }
+    return message;
+}
+
 string token_name(int t){
     switch (t)
     {
-        case NUM: return "NUM";
-        case SIGN: return "SIGN";
-        case ERR:return "ERR";
-        case VAR:return "VAR";
+        case NUM    :return "NUM";
+        case SIGN   :return "SIGN";
+        case ERR    :return "ERR";
+        case VAR    :return "VAR";
+        case EMPTY  :return"EMPTY";
         
     }
-    return "NOPE";
+    return  ("NOT_A_TYPE");
+    
 }
 
 char get_char(){
@@ -41,7 +58,6 @@ char get_char(){
 
 
 token next_token(){
-    
     token t;
     char peek;
     if (c == EOF){
@@ -50,22 +66,18 @@ token next_token(){
         peek = c;
         c = EOF;
     }
-    
-    while(peek ==' ' ){
-        // cout<<"found space"<<endl;
+    while(peek ==' ' ){//found space get next
         peek = get_char();
     }
-    
-    
-    
-    if (isdigit(peek)){ //tratar inteiros e reais
+    if (isdigit(peek)){
         int v = 0;
         do {
             v = v * 10 + atoi(&peek);
             peek = get_char();
-        } while (isdigit(peek));
+        } while (isdigit(peek)||peek=='.');
         t.type = NUM;
         t.value = v;
+        debug("new NUM: "+to_string(v));
         c = peek;
     } else if (peek=='='||peek == '+' || peek == '-'){
         t.type = SIGN;
