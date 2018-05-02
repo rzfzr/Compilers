@@ -12,91 +12,71 @@ void nope()
 {
     cout << "nope" << endl;
 }
-int output;
+float output;
 
 int vars[255];
-void next(token current, token last, token laster)
-{ //, token laster
+void next(token current, token last, token laster){ //, token laster
+    
 
     current = next_token();
-
-    debug("last: " + token_name(last.type) + "    current: " + token_name(current.type));
-    if (current.type == VAR)
-    {
-        if (last.type == EMPTY)
-        { //first so just increment
-            output = vars[current.value];
+    
+    debug("lst: "+to_string(last.getNum())+"("+ last.getType() + 
+    ") cur: " +to_string(current.getNum())+"("+ current.getType()+")");
+    
+    if (current.type == VAR){
+        
+        if (last.type == EMPTY){ //first so just increment
+            output = vars[current.getValue()];
         }
-        if (last.type == SIGN)
-        {
-            if (last.value == '+')
-            {
-                output += vars[current.value];
+        if (last.type == SIGN){
+            if (last.getValue() == '+'){
+                output += vars[current.getValue()];
+            }else if (last.getValue() == '-'){
+                output -= vars[current.getValue()];
             }
-            else if (last.value == '-')
-            {
-                output -= vars[current.value];
-            }
-            if (last.value == '=')
-            {
-                if (laster.type == VAR)
-                {
-                    vars[laster.value] = vars[current.value];
+            if (last.getValue() == '='){
+                if (laster.type == VAR){
+                    vars[laster.getValue()] = vars[current.getValue()];
                 }
             }
         }
     }
-    if (current.type == SIGN)
-    {
-        if (last.type == EMPTY)
-        { //first cant be SIGN
+    if (current.type == SIGN){
+        if (last.type == EMPTY){ //first cant be SIGN
             nope();
         }
     }
-    else if (current.type == NUM)
-    {
-        if (last.type == EMPTY)
-        { //first so just increment
-            output = current.value;
+    else if (current.type == INT || current.type==FLOAT){
+        if (last.type == EMPTY){ //first so just increment
+            output = current.getNum();
             // nope();
         }
-        if (last.type == SIGN)
-        { //todo: use the actual sign
-            if (last.value == '+')
-            {
-                output += current.value;
+        if (last.type == SIGN){ //todo: use the actual sign
+            if (last.getValue() == '+'){
+                output += current.getNum();
             }
-            else if (last.value == '-')
-            {
-                output -= current.value;
+            else if (last.getValue() == '-'){
+                output -= current.getNum();
             }
-            if (last.value == '=')
-            {
-                if (laster.type == VAR)
-                {
-                    vars[laster.value] = current.value;
+            if (last.getValue() == '='){
+                if (laster.type == VAR){
+                    vars[laster.getValue()] = current.getValue();
                 }
             }
         }
     }
 
-    if (current.type == EOF)
-    {
-        if (last.type == VAR)
-        {
-            if (laster.type == ERR)
-            {
+    if (current.type == EOF){
+        if (last.type == VAR){
+            if (laster.type == ERR){
 
-                output = vars[last.value];
+                output = vars[last.getValue()];
             }
         }
-        if (laster.value != '=')
-        {
+        if (laster.getValue() != '='){
             cout << output << endl;
         }
-    }
-    else
-    {
+    }else{
         next(current, current, last);
     }
     // else {
@@ -105,19 +85,17 @@ void next(token current, token last, token laster)
     // }
 }
 
-int main()
-{
-    // isDebugging=true;
 
+int main(){
     token empty;
-    empty.type = EMPTY;
-
-    // cout<<2.5<<endl;
-    while (input != "exit")
-    {
-        cin >> input;
+    // input="11+22";
+    input="1.2+3.4";
+    cout<<"input: "<<input<<endl;
+    while (input != "exit"){
+        // cin >> input;
         output = 0;
         pos = 0;
         next(empty, empty, empty);
+        input="exit";
     }
 }
