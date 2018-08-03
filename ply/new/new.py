@@ -12,21 +12,7 @@ reserved = {
   'write' : 'WRITE'
 }
 
-tokens = [
-    'IO',
-    'PROG',
-    'CMD',
-
-    'COND',
-
-    'BLOCK',
-
-    'LPAREN',
-    'RPAREN',
-
-    'EQUALS',
-    'VAR'
-    ] + list(reserved.values())
+tokens = ['IO','PROG','CMD','COND','BLOCK','LPAREN','RPAREN','EQUALS','VAR'] + list(reserved.values())
 
 
 
@@ -135,7 +121,7 @@ def p_block(p):#OK
 
 def p_eol(p):#OK??
     '''
-    eol :
+    eol  :
 
     '''
     p[0] = None

@@ -70,13 +70,13 @@ _lparen  = r'\('
 _rparen  = r'\)'
 _cond   = _lparen +_id+ _rparen
 
-_io    = r'read|write'  #+ _id  #r'write '+ _id  
+_io    = r'read|write' + _id  #r'write '+ _id  
 _if   = r'if'# + _cond + r'then' + _block
 _then = r'then'
 _else = r'else'
 
 _begin = r'begin'
-_end=r'end'
+_end  =  r'end'
 _cmd  = _io
 # _prog = _cmd + _id
 _block  = _begin+_cmd+_end

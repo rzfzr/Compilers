@@ -6,7 +6,7 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'BEGIN BLOCK CMD COND ELSE END EQUALS IF IO LPAREN PROG READ RPAREN THEN VAR WRITE\n    prog : cmd eol\n    | prog cmd eol\n    \n    \n    cmd : io\n    | if\n    \n    \n    if : IF cond THEN block\n        | IF cond THEN block ELSE block\n    \n    \n    cond : LPAREN VAR RPAREN\n        | LPAREN VAR EQUALS VAR RPAREN\n    \n    \n    io : READ VAR\n    | WRITE VAR\n    | VAR EQUALS VAR\n    \n    \n    block : BEGIN cmd END\n    \n    \n    eol :\n\n    '
+_lr_signature = 'BEGIN BLOCK CMD COND ELSE END EQUALS IF IO LPAREN PROG READ RPAREN THEN VAR WRITE\n    prog : cmd eol\n    | prog cmd eol\n    \n    \n    cmd : io\n    | if\n    \n    \n    if : IF cond THEN block\n        | IF cond THEN block ELSE block\n    \n    \n    cond : LPAREN VAR RPAREN\n        | LPAREN VAR EQUALS VAR RPAREN\n    \n    \n    io : READ VAR\n    | WRITE VAR\n    | VAR EQUALS VAR\n    \n    \n    block : BEGIN cmd END\n    \n    \n    eol  :\n\n    '
     
 _lr_action_items = {'READ':([0,1,2,3,4,9,10,11,13,16,17,20,21,27,28,],[5,5,-13,-3,-4,-13,-1,-9,-10,-2,-11,-5,5,-6,-12,]),'WRITE':([0,1,2,3,4,9,10,11,13,16,17,20,21,27,28,],[7,7,-13,-3,-4,-13,-1,-9,-10,-2,-11,-5,7,-6,-12,]),'VAR':([0,1,2,3,4,5,7,9,10,11,12,13,15,16,17,20,21,23,27,28,],[6,6,-13,-3,-4,11,13,-13,-1,-9,17,-10,19,-2,-11,-5,6,26,-6,-12,]),'IF':([0,1,2,3,4,9,10,11,13,16,17,20,21,27,28,],[8,8,-13,-3,-4,-13,-1,-9,-10,-2,-11,-5,8,-6,-12,]),'$end':([1,2,3,4,9,10,11,13,16,17,20,27,28,],[0,-13,-3,-4,-13,-1,-9,-10,-2,-11,-5,-6,-12,]),'END':([3,4,11,13,17,20,25,27,28,],[-3,-4,-9,-10,-11,-5,28,-6,-12,]),'EQUALS':([6,19,],[12,23,]),'LPAREN':([8,],[15,]),'THEN':([14,22,29,],[18,-7,-8,]),'BEGIN':([18,24,],[21,21,]),'RPAREN':([19,26,],[22,29,]),'ELSE':([20,28,],[24,-12,]),}
 
@@ -27,17 +27,17 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> prog","S'",1,None,None,None),
-  ('prog -> cmd eol','prog',2,'p_prog','new.py',85),
-  ('prog -> prog cmd eol','prog',3,'p_prog','new.py',86),
-  ('cmd -> io','cmd',1,'p_cmd','new.py',95),
-  ('cmd -> if','cmd',1,'p_cmd','new.py',96),
-  ('if -> IF cond THEN block','if',4,'p_if','new.py',104),
-  ('if -> IF cond THEN block ELSE block','if',6,'p_if','new.py',105),
-  ('cond -> LPAREN VAR RPAREN','cond',3,'p_cond','new.py',112),
-  ('cond -> LPAREN VAR EQUALS VAR RPAREN','cond',5,'p_cond','new.py',113),
-  ('io -> READ VAR','io',2,'p_io','new.py',121),
-  ('io -> WRITE VAR','io',2,'p_io','new.py',122),
-  ('io -> VAR EQUALS VAR','io',3,'p_io','new.py',123),
-  ('block -> BEGIN cmd END','block',3,'p_block','new.py',131),
-  ('eol -> <empty>','eol',0,'p_eol','new.py',138),
+  ('prog -> cmd eol','prog',2,'p_prog','new.py',71),
+  ('prog -> prog cmd eol','prog',3,'p_prog','new.py',72),
+  ('cmd -> io','cmd',1,'p_cmd','new.py',81),
+  ('cmd -> if','cmd',1,'p_cmd','new.py',82),
+  ('if -> IF cond THEN block','if',4,'p_if','new.py',90),
+  ('if -> IF cond THEN block ELSE block','if',6,'p_if','new.py',91),
+  ('cond -> LPAREN VAR RPAREN','cond',3,'p_cond','new.py',98),
+  ('cond -> LPAREN VAR EQUALS VAR RPAREN','cond',5,'p_cond','new.py',99),
+  ('io -> READ VAR','io',2,'p_io','new.py',107),
+  ('io -> WRITE VAR','io',2,'p_io','new.py',108),
+  ('io -> VAR EQUALS VAR','io',3,'p_io','new.py',109),
+  ('block -> BEGIN cmd END','block',3,'p_block','new.py',117),
+  ('eol -> <empty>','eol',0,'p_eol','new.py',124),
 ]
