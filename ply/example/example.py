@@ -11,6 +11,14 @@ tokens = (
     'LPAREN','RPAREN',
     )
 
+reserved = {
+  'if'   : 'IF',
+  'then' : 'THEN',
+  'else' : 'ELSE',
+  'begin': 'BEGIN',
+  'end'  : 'END',
+  'read' : 'READ'
+}
 # Tokens
 
 t_PLUS    = r'\+'
