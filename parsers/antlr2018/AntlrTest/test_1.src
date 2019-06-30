@@ -1,0 +1,9 @@
+write "insira n1";
+read n1;
+write "insira n2";
+read n2;
+ if n1>n2 then 
+    write n1;
+ else
+    write n2;
+
